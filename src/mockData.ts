@@ -1,7 +1,8 @@
 import type { ComicPage, ComicRegion } from './types';
+import { createId } from './utils';
 
 const createRegion = (overrides: Partial<ComicRegion>): ComicRegion => ({
-  id: crypto.randomUUID(),
+  id: createId(),
   x: 80,
   y: 120,
   width: 180,
@@ -60,7 +61,7 @@ const pageTwo = svgToDataUrl(`
 
 export const initialPages: ComicPage[] = [
   {
-    id: crypto.randomUUID(),
+    id: createId(),
     name: 'sample-page-01.png',
     src: pageOne,
     width: 820,
@@ -88,7 +89,7 @@ export const initialPages: ComicPage[] = [
     ],
   },
   {
-    id: crypto.randomUUID(),
+    id: createId(),
     name: 'sample-page-02.png',
     src: pageTwo,
     width: 820,

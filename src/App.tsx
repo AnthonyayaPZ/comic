@@ -1,6 +1,7 @@
 import { ChangeEvent, PointerEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { initialPages } from './mockData';
 import type { ComicPage, ComicRegion, RegionStatus, ViewMode } from './types';
+import { createId } from './utils';
 
 const statusMeta: Record<
   RegionStatus,
@@ -27,7 +28,7 @@ const createPageFromFile = (file: File): Promise<ComicPage> =>
       const image = new Image();
       image.onload = () =>
         resolve({
-          id: crypto.randomUUID(),
+          id: createId(),
           name: file.name,
           src: String(reader.result),
           width: image.width || 820,
@@ -224,7 +225,7 @@ export default function App() {
     setSelectedRegionId(null);
     setDragStart(position);
     setDraftRect({
-      id: crypto.randomUUID(),
+      id: createId(),
       x: position.x,
       y: position.y,
       width: 0,
